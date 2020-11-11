@@ -1,14 +1,29 @@
 # Optimizing an ML Pipeline in Azure
 
 ## Overview
-This project is part of the Udacity Azure ML Nanodegree.
-In this project, we build and optimize an Azure ML pipeline using the Python SDK and a provided Scikit-learn model.
-This model is then compared to an Azure AutoML run.
+This project is part of the Udacity Azure ML Engineer Nanodegree.
+In this project, I built and optimize an Azure ML pipeline using the Python SDK and a provided Scikit-learn model.
+
+The model building was in two part, the first part I created an Azure ML pipeline using hyperdrive to choose the optimal hyperameters of a Scikit-learn logistic regression model.
+
+The second part I configured and run an Azure AutoML model on the same dataset and the best model chosen.
+
+The two models were compared to see which one perormed better interms of accuracy.
+
+>**[Logistic Regresion + Hyperdrive] vs [Azure Auto ML]**
+
+>*Hyperdrive: is a python package that automates the process of choosing the best hyperparameters for your machine learning model.*
+
 
 ## Summary
-**In 1-2 sentences, explain the problem statement: e.g "This dataset contains data about... we seek to predict..."**
+The dataset contains 32,950 observation. Each of the observation corresponds to an individual information (eg. Age, Marital Status, Education level), however, the source and the data dictionary wasn't given. 
+
+The dataset has 20 features and one binary target variable y. We seek to predict the target variable y with the 20 features.
 
 **In 1-2 sentences, explain the solution: e.g. "The best performing model was a ..."**
+
+The solution to this problem is a binary classification model capable of predicting the class `yes` or `no` of the target variable `y`. The best performing model was a `Voting Ensemble` model by the Azure Auto ML run.
+
 
 ## Scikit-learn Pipeline
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**

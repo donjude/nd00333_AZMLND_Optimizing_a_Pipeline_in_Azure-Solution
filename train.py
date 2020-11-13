@@ -11,14 +11,15 @@ from azureml.core.run import Run
 from azureml.data.dataset_factory import TabularDatasetFactory
 import joblib
 
+
+run = Run.get_context()
+
 # TODO: Create TabularDataset using TabularDatasetFactory
 # Data is located at:
 # "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
 
 ds = TabularDatasetFactory.from_delimited_files("https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv")
 
-
-run = Run.get_context()
 
 def clean_data(data):
     # Dict for cleaning data

@@ -2,15 +2,15 @@
 
 ## Overview
 This project is part of the Udacity Azure ML Engineer Nanodegree.
-In this project, I built and optimize an Azure ML pipeline using the Python SDK and a provided Scikit-learn model.
+In this project, I built and optimize an Azure ML pipeline using the Python SDK and a provided custom Scikit-learn model.
 
-The model building was in two part, the first part I created an Azure ML pipeline using hyperdrive to choose the optimal hyperameters of a Scikit-learn logistic regression model.
+The model building was in two parts, the first part, I created an Azure ML pipeline using Hyperdrive to choose the optimal hyperameters of a Scikit-learn logistic regression model.
 
-The second part I configured and run an Azure AutoML model on the same dataset and the best model chosen.
+The second part, I configured and run an Azure AutoML model on the same dataset and the best model chosen.
 
-The two models were compared to see which one perormed better interms of accuracy.
+The two models were compared to see which one performed better, interms of accuracy.
 
->**[Logistic Regresion + Hyperdrive] vs [Azure Auto ML]**
+>**[Logistic Regression + Hyperdrive] vs [Azure Auto ML]**
 
 >*Hyperdrive: is a python package that automates the process of choosing the best hyperparameters for your machine learning model.*
 
@@ -30,7 +30,7 @@ The solution to this problem is a binary classification model capable of predict
 
 The pipeline for this process consisted of two different setups:
 
-### Hyperdrive Pipeline
+### Logistic Regression + Hyperdrive Setup
 
 1. A python `train.py` script which contains data ingestion code from a url csv data is setup to create a Tabular dataset.
 b. Within the same script, data cleansing and a Scikit-learn Logistic Regression model is also setup.
@@ -39,48 +39,64 @@ b. Within the same script, data cleansing and a Scikit-learn Logistic Regression
 
 1. In the notebook, the hyperdrive configuration when set to run, submits its process and executes the process on an Azure ML compute cluster. 
 
-1. The execution of this process imports the data from a url csv data, creates a tabular dataset, cleanse the dataset and split into train test split.
+1. The execution of this process imports the data from a url csv data, creates a tabular dataset, cleanse the dataset and split into train test sets.
 
 1. The training data is parsed together with the configured hyperparameter values to the Scikit-learn Logistic Regression model.  
 
-1. The model is train on the different combination of hyperameter values specified. The trained model is evaluated on the test data and Hyperdrive creates several Logistic Regression models based on the combination of some selected hyperdrive hyperparater values specified. Their accuracy are logged.
+1. The model is trained on the different combination of hyperameter values specified. The trained model is evaluated on the test data and Hyperdrive creates several Logistic Regression models based on the combination of some selected hyperdrive hyperparater values specified. Their accuracy are logged.
 
 1. The best Logistic Regression model with the highest accuracy is then saved.
 
 
 ### AutoML Setup
-1. The AutoML run is setup from the same Notebook using the same dataset.
+1. The AutoML run is setup in the same Notebook using the same dataset.
+
 1. A Tabular Dataset is created from the URL csv data.
-1. The dataset is cleansed and split into train_test_set.
+
+1. The dataset is cleansed and split into train test sets.
+
 1. The training data and the test data are uploaded to Azure datastore and registered as a dataset within the same workspace previously used by hyperdrive run.
-1. The training configuration code is setup and the task is set as `classification`. The training dataset and the label (dependent variable) specified.
-1. Compute is specified, kfold `n_cross_validation` value is set, and `primary_metric` is chosen as `accuracy`.
+
+1. The training configuration code is setup and the task is set to `classification`. The training dataset and the label (dependent variable) specified.
+
+1. A Compute target is specified, kfold `n_cross_validation` value is set, and `primary_metric` is chosen as `accuracy`.
 1. The AutoML run is submitted to execute on the same compute cluster used previously.
+
 1. AutoML run generates different machine learning models by picking different algorithms and different hyperparameters.
+
 1. The best model from AutoML run is chosen and saved.
 
 **What are the benefits of the parameter sampler you chose?**
+
 Random Parameter Sampling was chosen as the Hyperparameter tuning algorithm. The benefit of this search algorithm is that it provides a good model by randomly selecting hyperparameter values from a defined search space. This makes it less computational intensive and much faster. It also supports early stoping policy.
 
 **What are the benefits of the early stopping policy you chose?**
+
 It's early stoping policy is beneficial because it terminates low performance runs to pave way for runs that can produce good results.
 
 ## AutoML
 **In 1-2 sentences, describe the model and hyperparameters generated by AutoML.**
+
 AutoML generated close to about 28 different models and the best model with the highest accuracy is chosen. AutoML chooses the hyperparameters automatically for all the different algorithms used.
 
 ## Pipeline comparison
 **Compare the two models and their performance. What are the differences in accuracy? In architecture? If there was a difference, why do you think there was one?**
-The best model `VotingEnsemble` produced by AutoML outperformed the `Logistic Regression + Hyperdrive` model. The accuracy of AutoML's `VotingEnsemble` was `0.91721` and that of the `Logistic Regression + Hyperdrive` was `0.9144`. There was a slight difference in the performance and this was due to the fact that different Machine Learning Algorithms, different data transformations were used in AutoML in combination with different hyperparameter optimization techniques. Whereas, in the `Logistic Regresion + Hyperdrive` model only used a single algorithm with a single hyperparameter technique without any data transformation.
+
+The best model `VotingEnsemble` produced by AutoML outperformed the `Logistic Regression + Hyperdrive` model. The accuracy of AutoML's `VotingEnsemble` was `0.91721` and that of the `Logistic Regression + Hyperdrive` was `0.9144`. 
+
+There was a slight difference in the performance and this was due to the fact that different Machine Learning Algorithms, different data transformations were used in AutoML in combination with different hyperparameter optimization techniques. Whereas, in the `Logistic Regression + Hyperdrive` model only used a single algorithm with a single hyperparameter technique without any data transformation.
 
 ## Future work
 **What are some areas of improvement for future experiments? Why might these improvements help the model?**
+
 For future experiments data transformation techniques could be leverage in combination with logistic regression and hyperdrive to see if there is an improvement in its performance.
 
-We can choose a different hyperdrive hyperparameter search algorithm such as `GridParameterSampling` or `BayesianParameterSampling` for performance improvement.
+I would also try different hyperdrive hyperparameter search algorithms such as `GridParameterSampling` or `BayesianParameterSampling` for performance improvement.
 
-We can also try different algorithms with hyperdrive.
+The last but not the least I would use different algorithms with in combination with different hyperdrive hyperparameter configurations.
 
 
 ## Proof of cluster clean up
+The delete method `aml_compute.delete()` can be found in the .ipynb code.
+
 ![Cluster Image](images/Selection_006.png)

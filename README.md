@@ -16,17 +16,19 @@ The two models were compared to see which one perormed better interms of accurac
 
 
 ## Summary
-The dataset contains 32,950 observation. Each of the observation corresponds to an individual information (eg. Age, Marital Status, Education level), however, the source and the data dictionary wasn't given. 
+The dataset contains 32,950 observations. Each of the observations corresponds to an individual information about a person (eg. Age, Marital Status, Education level), however, the source and the data dictionary wasn't given. 
 
 The dataset has 20 features and one binary target variable y. We seek to predict the target variable y with the 20 features.
 
 **In 1-2 sentences, explain the solution: e.g. "The best performing model was a ..."**
 
-The solution to this problem is a binary classification model capable of predicting the class `yes` or `no` of the target variable `y`. The best performing model was a `Voting Ensemble` model by the Azure Auto ML run.
+The solution to this problem is a binary classification model capable of predicting the class `yes` or `no` of the target variable `y`. The best performing model was a `VotingEnsemble` model by the Azure AutoML run with an Accuracy of `0.91721`. This outperformed the logistic regression model optimized by `Hyperdrive`.
 
 
 ## Scikit-learn Pipeline
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
+
+A csv dataset was injested into a python environment from a URL
 
 
 **What are the benefits of the parameter sampler you chose?**

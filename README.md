@@ -12,7 +12,7 @@ The two models were compared to see which one performed better, interms of accur
 
 >**[Logistic Regression + Hyperdrive] vs [Azure Auto ML]**
 
->*Hyperdrive: is a python package that automates the process of choosing the best hyperparameters for your machine learning model.*
+>****Hyperdrive:*** is a python package that automates the process of choosing the best hyperparameters for your machine learning model.*
 
 
 ## Summary
@@ -21,7 +21,6 @@ The dataset contains 32,950 observations of a direct marketing campaign of a Por
 ### Attribute Information:
 
 **Input variables:**
-### bank client data:
 1. age (numeric)
 1. job : type of job (categorical: 'admin.','blue-collar','entrepreneur','housemaid','management','retired','self-employed','services','student','technician','unemployed','unknown')
 1. marital : marital status (categorical: 'divorced','married','single','unknown'; note: 'divorced' means divorced or widowed)
@@ -43,7 +42,8 @@ The dataset contains 32,950 observations of a direct marketing campaign of a Por
 1. euribor3m: euribor 3 month rate - daily indicator (numeric)
 1. nr.employed: number of employees - quarterly indicator (numeric)
 
-1. y - has the client subscribed a term deposit? (binary: 'yes','no') - ***Target variable***
+**Output - Target variable:**
+1. y - has the client subscribed a term deposit? (binary: 'yes','no')
 
 As seen above the dataset has 20 features and one binary target variable y. We seek to predict if the client will subscribe a term deposit(y).
 

@@ -55,6 +55,8 @@ The solution to this problem is a binary classification model capable of predict
 ## Scikit-learn Pipeline
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
 
+![Cluster Image](images/pipeline.png)
+
 The pipeline for this process consisted of two different setups:
 
 ### Logistic Regression + Hyperdrive Setup
@@ -125,5 +127,3 @@ The last but not the least I would use different algorithms with in combination 
 
 ## Proof of cluster clean up
 The delete method `aml_compute.delete()` can be found in the .ipynb code.
-
-![Cluster Image](images/Selection_006.png)

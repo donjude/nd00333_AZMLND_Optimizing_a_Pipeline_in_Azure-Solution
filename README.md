@@ -16,13 +16,40 @@ The two models were compared to see which one performed better, interms of accur
 
 
 ## Summary
-The dataset contains 32,950 observations. Each of the observations corresponds to an individual information about a person (eg. Age, Marital Status, Education level), however, the source and the data dictionary wasn't given. 
+The dataset contains 32,950 observations of a direct marketing campaign of a Portuguese banking institution. Each of the observations corresponds to an individual customer information.
 
-The dataset has 20 features and one binary target variable y. We seek to predict the target variable y with the 20 features.
+### Attribute Information:
+
+**Input variables:**
+### bank client data:
+1. age (numeric)
+1. job : type of job (categorical: 'admin.','blue-collar','entrepreneur','housemaid','management','retired','self-employed','services','student','technician','unemployed','unknown')
+1. marital : marital status (categorical: 'divorced','married','single','unknown'; note: 'divorced' means divorced or widowed)
+1. education (categorical: 'basic.4y','basic.6y','basic.9y','high.school','illiterate','professional.course','university.degree','unknown')
+1. default: has credit in default? (categorical: 'no','yes','unknown')
+1. housing: has housing loan? (categorical: 'no','yes','unknown')
+1. loan: has personal loan? (categorical: 'no','yes','unknown')
+1. contact: contact communication type (categorical: 'cellular','telephone')
+1. month: last contact month of year (categorical: 'jan', 'feb', 'mar', ..., 'nov', 'dec')
+1. day_of_week: last contact day of the week (categorical: 'mon','tue','wed','thu','fri')
+1. duration: last contact duration, in seconds (numeric). Important note: this attribute highly affects the output target (e.g., if duration=0 then y='no'). Yet, the duration is not known before a call is performed. Also, after the end of the call y is obviously known. Thus, this input should only be included for benchmark purposes and should be discarded if the intention is to have a realistic predictive model.
+1. campaign: number of contacts performed during this campaign and for this client (numeric, includes last contact)
+1. pdays: number of days that passed by after the client was last contacted from a previous campaign (numeric; 999 means client was not previously contacted)
+1. previous: number of contacts performed before this campaign and for this client (numeric)
+1. poutcome: outcome of the previous marketing campaign (categorical: 'failure','nonexistent','success')
+1. emp.var.rate: employment variation rate - quarterly indicator (numeric)
+1. cons.price.idx: consumer price index - monthly indicator (numeric)
+1. cons.conf.idx: consumer confidence index - monthly indicator (numeric)
+1. euribor3m: euribor 3 month rate - daily indicator (numeric)
+1. nr.employed: number of employees - quarterly indicator (numeric)
+
+1. y - has the client subscribed a term deposit? (binary: 'yes','no') - ***Target variable***
+
+As seen above the dataset has 20 features and one binary target variable y. We seek to predict if the client will subscribe a term deposit(y).
 
 **In 1-2 sentences, explain the solution: e.g. "The best performing model was a ..."**
 
-The solution to this problem is a binary classification model capable of predicting the class `yes` or `no` of the target variable `y`. The best performing model was a `VotingEnsemble` model by the Azure AutoML run with an Accuracy of `0.91721`. This outperformed the logistic regression model optimized by `Hyperdrive`.
+The solution to this problem is a binary classification model capable of predicting the class `yes` or `no` if the client will subscribe `a term deposit(y)`. The best performing model was a `VotingEnsemble` model by the Azure AutoML run with an Accuracy of `0.91721`. This outperformed the logistic regression model optimized by `Hyperdrive`.
 
 
 ## Scikit-learn Pipeline
